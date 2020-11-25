@@ -1,5 +1,4 @@
 
-
 class Dolgozo:
     def munka(self):
         print('ások')
