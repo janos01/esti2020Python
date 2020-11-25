@@ -1,0 +1,5 @@
+1:Para Béla:Szeged:3850000
+2:Arany Géza:Szolnok:2550000
+3:Fekete Tamás:Szolnok:1450000
+4:Perc Ilona:Szeged:2850000
+5:Teréz Irén:Szeged:1850000
