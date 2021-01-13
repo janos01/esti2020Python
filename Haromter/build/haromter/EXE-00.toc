@@ -1,5 +1,5 @@
 ('C:\\Users\\admin\\Desktop\\esti\\esti2020Python\\Haromter\\dist\\haromter.exe',
- True,
+ False,
  False,
  False,
  None,
@@ -107,7 +107,7 @@
  [],
  False,
  False,
- 1610561163,
- [('run.exe',
-   'C:\\Users\\admin\\AppData\\Roaming\\Python\\Python39\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\run.exe',
+ 1610568529,
+ [('runw.exe',
+   'C:\\Users\\admin\\AppData\\Roaming\\Python\\Python39\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\runw.exe',
    'EXECUTABLE')])

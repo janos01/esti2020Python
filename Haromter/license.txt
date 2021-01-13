@@ -1,0 +1,7 @@
+A program szabad szoftver.
+
+Használható és terjeszthetõ a
+GNU GPL 3 licenc alapján.
+
+Nagy János
+2021-01-13
