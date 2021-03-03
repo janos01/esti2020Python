@@ -1,0 +1,2 @@
+aaa:bbb:ccc:ddd
+Nagy János:Szolnok:8600000:lapátos
