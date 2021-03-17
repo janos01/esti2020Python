@@ -1,0 +1,7 @@
+Szabó János:Kék
+Szűk Mihály:Zöld
+Szabó János:Piros
+Veres Péter:Zöld
+Veres Péter:Zöld
+Szabó János:Piros
+Veres Péter:Zöld

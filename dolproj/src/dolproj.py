@@ -49,17 +49,33 @@ class MainFrame(wx.Frame):
         self.mentes_button = wx.Button(self.panel_1, wx.ID_ANY, u"Mentés")
         sizer_1.Add(self.mentes_button, 0, wx.ALIGN_CENTER_HORIZONTAL | wx.ALL, 6)
 
+        self.status_text = wx.TextCtrl(self.panel_1, wx.ID_ANY, "")
+        sizer_1.Add(self.status_text, 0, wx.EXPAND, 0)
+
         self.panel_1.SetSizer(sizer_1)
 
         self.Layout()
 
+        self.Bind(wx.EVT_COMBOBOX, self.on_dolgozo_combobox, self.dolgozok_combo)
+        self.Bind(wx.EVT_COMBOBOX, self.on_projektek_combobox, self.projektek_combo)
         self.Bind(wx.EVT_BUTTON, self.click_mentes_button, self.mentes_button)
         # end wxGlade
         self.feltolt()
         
 
     def click_mentes_button(self, event):  # wxGlade: MainFrame.<event_handler>
-        print("Event handler 'click_mentes_button' not implemented!")
+        valasztott_dolgozo = self.dolgozok_combo.GetValue()
+        valasztott_projekt = self.projektek_combo.GetValue()
+        print(valasztott_dolgozo, valasztott_projekt)
+        
+        filename = 'dolgozoProjekt.txt'
+        fp = open(filename, 'a')
+        fp.write(valasztott_dolgozo)
+        fp.write(':')
+        fp.write(valasztott_projekt)
+        fp.write('\n')
+        fp.close()
+        self.status_text.SetValue('A mentés megtörtént')
         event.Skip()
 
     def feltolt(self):
@@ -81,6 +97,13 @@ class MainFrame(wx.Frame):
         return clear_lines
 
    
+    def on_dolgozo_combobox(self, event):  # wxGlade: MainFrame.<event_handler>
+        self.status_text.SetValue('')
+        event.Skip()
+        
+    def on_projektek_combobox(self, event):  # wxGlade: MainFrame.<event_handler>
+        self.status_text.SetValue('')
+        event.Skip()
 # end of class MainFrame
 
 class DolprojApp(wx.App):

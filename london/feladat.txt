@@ -1,0 +1,24 @@
+
+
+london.txt
+
+Példa sor:
+  3 1 öttusa férfi_egyéni
+
+  * elért helyezés
+  * hány sportoló érte el (egyéni vagy csapat)
+  * sportág
+  * versenyszám
+
+
+1.) Készítsen london néven grafikus programot. 
+2.) Olvassa be a london.txt állományt, megfelelő adatszerkezetbe.
+3.) Cselgancs lett írva cselgáncs helyett. 
+Javítsa és mentse a london2.txt néven,
+és az adatszerkezetben is.
+Az átírás kattintásra történjen. 
+4.) Hány első helyezett van?
+5.) Számolja meg, melyik helyezésből hány darab van.
+6.) Hány egyéni versenyező nyert 1,2 vagy 3-dik helyezést. 
+7.) Írassa ki milyen sportágak vannak.
+8.) Melyik csoportban volt a legtöbb résztvevő?
