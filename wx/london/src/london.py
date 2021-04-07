@@ -5,6 +5,7 @@
 #
 
 import wx
+import wx.adv
 
 # begin wxGlade: dependencies
 # end wxGlade
@@ -24,7 +25,7 @@ class MainFrame(wx.Frame):
         # begin wxGlade: MainFrame.__init__
         kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
-        self.SetSize((400, 300))
+        self.SetSize((400, 475))
         self.SetTitle("frame")
 
         self.panel_1 = wx.Panel(self, wx.ID_ANY)
@@ -46,23 +47,50 @@ class MainFrame(wx.Frame):
         self.feladat_button = wx.Button(self.panel_1, wx.ID_ANY, "Feladatok")
         gombok_sizer.Add(self.feladat_button, 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 6)
 
-        sizer_1 = wx.BoxSizer(wx.HORIZONTAL)
-        main_sizer.Add(sizer_1, 0, wx.EXPAND, 0)
+        feladat4_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        main_sizer.Add(feladat4_sizer, 0, wx.EXPAND, 0)
 
         label_2 = wx.StaticText(self.panel_1, wx.ID_ANY, u"4.) Első helyezettek")
-        sizer_1.Add(label_2, 1, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 6)
+        feladat4_sizer.Add(label_2, 1, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 6)
 
         self.elso_helyezettek_text = wx.TextCtrl(self.panel_1, wx.ID_ANY, "")
-        sizer_1.Add(self.elso_helyezettek_text, 1, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 6)
+        feladat4_sizer.Add(self.elso_helyezettek_text, 1, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 6)
 
-        sizer_2 = wx.BoxSizer(wx.HORIZONTAL)
-        main_sizer.Add(sizer_2, 0, wx.EXPAND, 0)
+        feladat5_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        main_sizer.Add(feladat5_sizer, 0, wx.EXPAND, 0)
 
         label_3 = wx.StaticText(self.panel_1, wx.ID_ANY, u"5.) Helyezések száma")
-        sizer_2.Add(label_3, 1, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 6)
+        feladat5_sizer.Add(label_3, 1, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 6)
 
         self.helyezesek_szama_text = wx.TextCtrl(self.panel_1, wx.ID_ANY, "")
-        sizer_2.Add(self.helyezesek_szama_text, 1, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 6)
+        feladat5_sizer.Add(self.helyezesek_szama_text, 1, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 6)
+
+        feladat6_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        main_sizer.Add(feladat6_sizer, 1, wx.EXPAND, 0)
+
+        label_4 = wx.StaticText(self.panel_1, wx.ID_ANY, u"6.) Egyéni versenyzők")
+        feladat6_sizer.Add(label_4, 1, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 6)
+
+        self.egyeni_list_box = wx.ListBox(self.panel_1, wx.ID_ANY, choices=[])
+        feladat6_sizer.Add(self.egyeni_list_box, 1, wx.ALL | wx.EXPAND, 6)
+
+        feladat7_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        main_sizer.Add(feladat7_sizer, 1, wx.EXPAND, 0)
+
+        label_5 = wx.StaticText(self.panel_1, wx.ID_ANY, u"7.) Sportágak")
+        feladat7_sizer.Add(label_5, 1, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 6)
+
+        self.sportagak_list_box = wx.ListBox(self.panel_1, wx.ID_ANY, choices=[])
+        feladat7_sizer.Add(self.sportagak_list_box, 1, wx.ALL | wx.EXPAND, 6)
+
+        feladat8_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        main_sizer.Add(feladat8_sizer, 1, wx.EXPAND, 0)
+
+        label_6 = wx.StaticText(self.panel_1, wx.ID_ANY, u"8.) Legtöbb résztvevő")
+        feladat8_sizer.Add(label_6, 1, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 6)
+
+        self.legtobb_text = wx.TextCtrl(self.panel_1, wx.ID_ANY, "")
+        feladat8_sizer.Add(self.legtobb_text, 1, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 6)
 
         self.panel_1.SetSizer(main_sizer)
 
@@ -77,13 +105,21 @@ class MainFrame(wx.Frame):
     def click_javait_button(self, event):  # wxGlade: MainFrame.<event_handler>
         self.javit_cselgancs()
         event.Skip()
+
     def click_nevjegy_button(self, event):  # wxGlade: MainFrame.<event_handler>
-        print("Event handler 'click_nevjegy_button' not implemented!")
+        self.nevjegy = wx.adv.AboutDialogInfo()
+        self.nevjegy.SetName('London')
+        self.nevjegy.SetVersion('1.0')
+        self.nevjegy.AddDeveloper('Nagy János')
+        wx.adv.AboutBox(self.nevjegy)
         event.Skip()
 
     def click_feladatok_button(self, event):  # wxGlade: MainFrame.<event_handler>
         self.feladat4()
         self.feladat5()
+        self.feladat6()
+        self.feladat7()
+        self.feladat8()
         event.Skip()
 
     def feladat4(self):
@@ -116,6 +152,42 @@ class MainFrame(wx.Frame):
         # ~ print(line)
         self.helyezesek_szama_text.SetValue(line)
     
+    def feladat6(self):
+        elsok = 0
+        masodikok = 0
+        harmadikok = 0
+        for verseny in self.versenyek:
+            if (verseny.helyezes == "1" and 
+                verseny.szamuk == "1"
+                ):
+                elsok += 1
+            if (verseny.helyezes == "2" and 
+                verseny.szamuk == "1"
+                ):
+                masodikok += 1
+            if (verseny.helyezes == "3" and 
+                verseny.szamuk == "1"
+                ):
+                harmadikok += 1
+        self.egyeni_list_box.Append("Elsők: "+str(elsok))
+        self.egyeni_list_box.Append("Másodikok"+str(masodikok))
+        self.egyeni_list_box.Append("Harmadikok"+str(harmadikok))
+    
+    def feladat7(self):
+        sportagak = []
+        for verseny in self.versenyek:
+            if verseny.sportag not in sportagak:
+                sportagak.append(verseny.sportag)
+        self.sportagak_list_box.Append(sportagak)
+    
+    def feladat8(self):
+        maxverseny = self.versenyek[0]
+        for verseny in self.versenyek:
+            if int(verseny.szamuk) > int(maxverseny.szamuk):
+                maxverseny = verseny
+        line = maxverseny.sportag + ' - ' + maxverseny.versenyszam
+        self.legtobb_text.SetValue(line)
+
     def javit_cselgancs(self):
         fp = open('london2.txt', 'w')
         for verseny in self.versenyek:
@@ -127,7 +199,6 @@ class MainFrame(wx.Frame):
                     verseny.versenyszam + '\n'
             )
             fp.write(line)
-            # ~ print(line)
         fp.close()
         self.SetTitle('A javítás megtörtént')
     
